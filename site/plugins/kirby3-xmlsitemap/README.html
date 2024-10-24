@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="kirby3xmlsitemap">Kirby3 xmlsitemap</h1>
+
+<p><img src="https://img.shields.io/badge/Kirby-3black.svg" alt="Kirby Version" /> <a href="https://github.com/omz13/kirby3-xmlsitemap/issues"><img src="https://img.shields.io/github/issues/omz13/kirby3-xmlsitemap.svg" alt="Issues" /></a></p>
+
+<p><strong>Requirement:</strong> Kirby 3.0</p>
+
+<h2 id="coffeebeeretc.">Coffee, Beer, etc.</h2>
+
+<p>A humungous amount of work went into creating this plugin. Seriously it did. Just look at the source code if you dare, because there is a lot going on in there to make <em>your</em> life easier (even if it means that <em>I</em> have to spend days hunched over a keyboard doing this so you don&#8217;t have to!). Who knew that traversing through all the pages in a kirby 3 site and spitting out the right xml elements could be so much fun (and I use the word fun there in its alternative-reality meaning). If you run a multi-language site you should be jumping up and down with joy because it gets the sitemaps right, and trust me when I say this is not as easy to do as you might think it is. For kicks, and to stop your processor getting hammered because generating process is a bit intense, the result is cached, and writing that cache code involved a lot of coffee. I also get a dopamine hit if you star this repo. So go star it. Pretty please!</p>
+
+<p>This plugin is free but if you use it in a commercial project to show your support you are welcome (greatly encouraged) to:</p>
+
+<ul>
+<li><a href="https://www.paypal.me/omz13/10">make a donation 🍻</a> or</li>
+<li><a href="https://buymeacoff.ee/omz13">buy me ☕☕</a> or</li>
+<li><a href="https://a.paddle.com/v2/click/1129/36191?link=1170">buy a Kirby license using this affiliate link</a></li>
+</ul>
+
+<h2 id="documentation">Documentation</h2>
+
+<h3 id="purpose">Purpose</h3>
+
+<p>For a kirby3 site, this plugin (<em>omz13/xmlsitemap</em>) automatically generates an xml-based sitemap at <code>/sitemap.xml</code> and provides a prettifier (<code>/sitemap.xsl</code>) for humans.</p>
+
+<ul>
+<li>Generates a <a href="https://www.sitemaps.org">sitemap</a>; <a href="https://webmaster.yandex.com/tools/sitemap/">valid</a> too.</li>
+<li>Works with both single-language and multi-language sites.</li>
+<li>For multilingual sites an entry (<code>&lt;url&gt;</code>) is generated for each language, and within each <code>&lt;loc&gt;</code> there are appropriate <code>&lt;xhtml:link&gt;</code> members, one for each language with <a href="https://support.google.com/webmasters/answer/189077">hreflang</a> computed from the language&#8217;s configured <code>locale</code>), and an additional pseudo-language of <a href="https://webmasters.googleblog.com/2013/04/x-default-hreflang-for-international-pages.html">x-default</a> per the site&#8217;s default language.</li>
+<li>The generated page can be cached for a determined amount of time, c.f. <code>cacheTTL</code> in <em>Configuration</em>. This not only improves the response time if it can be retrieved from the cache, but also reduces load on your server&#8217;s cpu (because it takes effort to generate).</li>
+<li>For all pages, <code>&lt;loc&gt;</code> and <code>&lt;lastmod&gt;</code> are given; <code>&lt;priority&gt;</code> is not given because &#8220;its a bag of noise&#8221;; <code>&lt;changefreq&gt;</code> is also not given because it does not affect ranking.</li>
+<li><code>&lt;lastmod</code>&gt; is calculated using the date in a page&#8217;s field called <code>updatedat</code>, or if not present then from the field <code>date</code>; if neither were found, it is based on the modification time (failing that, the creation time) for the page&#8217;s content file.</li>
+<li>When a page is included in the xml-sitemap, information for images (<code>&lt;image:loc&gt;</code>) on each page is included unless this is disabled; c.f. <code>disableImages</code> in <em>Configuration</em>.</li>
+<li>The generated <code>sitemap.xml</code> has an accompanying <code>sitemap.xsl</code> to produce a prettified page for human consumption.</li>
+<li>Only pages that have a status of &#8220;published&#8221; are included (everything else, <code>drafts</code> and <code>unlisted</code>, are excluded).</li>
+<li>Pages or their children can be excluded based on the following criteria, and in the following order:</li>
+<li> The homepage is always included.</li>
+<li> The error page is always excluded.</li>
+<li> Only pages that have a status of &#8220;published&#8221; are included, i.e. those with &#8220;draft&#8221; or &#8220;unpublished&#8221; are excluded.</li>
+<li> Unpublished pages can be explicitly included based on their slugname; c.f. <code>includeUnlistedWhenSlugIs</code> in <em>Configuration</em>.</li>
+<li> Unpublished pages can be explicitly included based on their template; c.f. <code>includeUnlistedWhenTemplateIs</code> in <em>Configuration</em>.</li>
+<li> Pages made using certain templates can be excluded; c.f. <code>excludePageWhenTemplateIs</code> in <em>Configuration</em>.</li>
+<li> Pages with certain slugnames can be excluded; c.f. <code>excludePageWhenSlugIs</code> in <em>Configuration</em>.</li>
+<li> Pages with a content field <code>excludefromxmlsitemap</code> that is <code>true</code> are excluded.</li>
+<li> Pages with a method <code>issunset</code> that returns <code>true</code> are excluded.</li>
+<li> Pages with a method <code>isunderembargo</code> that returns <code>true</code> are excluded.</li>
+<li> For use with &#8220;one-pagers&#8221;, children of pages made using certain templates can be excluded as sub-ordinate links (c.f. <code>excludeChildrenWhenTemplateIs</code> in <em>Configuration</em>) but any <em>images</em> in those children <em>will</em> be included and listed as normal (which is how one-pagers are expected to work).</li>
+<li>A closure can be specified to return a set of pages to be included in the sitemap, c.f. <code>addPages</code> in <em>Configuration</em>.</li>
+<li>For debugging purposes, the generated sitemap can include additional information as xml comments; c.f. <code>debugqueryvalue</code> in <em>Configuration</em>.</li>
+<li>For debugging purposes, the cache can be bypassed and an explicitly regenerated sitemap returned; c.f. <em>nocache</em> in <em>Use</em></li>
+</ul>
+
+<h4 id="relatedplugins">Related plugins</h4>
+
+<p>For a user-oriented html-based sitemap, kindly see <a href="https://github.com/omz13/kirby3-htmlsitemap">omz13/kirby3-htmlsitemap</a>.</p>
+
+<p>For a plugin that provides the methods <code>issunset</code> and <code>isunderembargo</code>, kindly see <a href="https://github.com/omz13/kirby3-suncyclepages">omz13/kirby3-suncyclepages</a>.</p>
+
+<p>For a plugin to generate <code>robots.txt</code> and that magically integrates with this one, kindly see <a href="https://github.com/omz13/kirby3-wellknown">omz13/kirby3-wellknown</a>.</p>
+
+<p>Other plugins that I have developed for kirby 3 are to be found in my <a href="https://github.com/omz13?utf8=✓&amp;tab=repositories&amp;q=kirby3-&amp;type=&amp;language=">github repos</a>. Go take a look; you might find some useful. Apparently my README files are highly entertaining. YMMV.</p>
+
+<h4 id="roadmap">Roadmap</h4>
+
+<p>The non-binding list of planned features and implementation notes are:</p>
+
+<ul>
+<li>[x] MVP (<code>loc</code> and <code>lastmod</code>) <strong>done 0.1</strong></li>
+<li>[ ] <sub><sub><code>&lt;priority&gt;</code></sub></sub></li>
+<li>[ ] <sub><sub><code>&lt;changefreq&gt;</code></sub></sub></li>
+<li>[x] Respect page status <strong>done 0.2</strong></li>
+<li>[x] Allow specific unlisted pages to be included <strong>done 0.2</strong> c.f. <code>includeUnlistedWhenSlugIs</code></li>
+<li>[x] One-pager support <strong>done 0.1</strong> c.f. <code>excludeChildrenWhenTemplateIs</code></li>
+<li>[x] Include <a href="(https://support.google.com/webmasters/answer/178636?hl=en)">image sitemap</a> <code>&lt;image:image&gt;</code></li>
+<li>[x] <code>&lt;image:loc&gt;</code> <strong>done 0.2</strong></li>
+<li>[ ] <code>&lt;image:caption&gt;</code></li>
+<li>[ ] <code>&lt;image:title&gt;</code></li>
+<li>[ ] <code>&lt;image:license&gt;</code></li>
+<li>[x] Exclude image sitemap; c.f. <code>disableImages</code> <strong>done 0.3</strong></li>
+<li>[x] Exclusion of individual pages – <strong>done 0.2</strong> c.f. <code>excludePageWhenSlugIs</code></li>
+<li>[x] Exclusion of pages by template – <strong>done 0.1</strong> c.f. <code>excludePageWhenTemplateIs</code></li>
+<li>[x] Better heuristics for <code>&lt;lastmod&gt;</code> (e.g. <code>modifiedat</code> field?)</li>
+<li>[ ] ~~Overriding of stylesheet~~</li>
+<li>[ ] Disable stylesheet</li>
+<li>[ ] Remove credits</li>
+<li>[x] robots.txt - works with <a href="https://github.com/omz13/kirby3-wellknown">omz13/kirby3-wellknown</a></li>
+<li>[x] Cache <strong>done 0.4</strong> c.f. <code>cacheTTL</code></li>
+<li>[ ] Automate GitHub release – <a href="https://github.com/itchio/gothub">gothub</a>? <a href="https://github.com/github-tools/github-release-notes">github-release-notes</a>?</li>
+<li>[ ] Inform search engine crawlers when map changes</li>
+<li>[ ] Guard 50,000 URLs limit</li>
+<li>[ ] Guard 50MB limit</li>
+<li>[ ] <a href="https://www.sitemaps.org/protocol.html#index">Sitemap Index files</a></li>
+<li>[ ] <a href="https://support.google.com/webmasters/answer/80471?hl=en&amp;ref_topic=4581190">Video sitemap</a> <code>&lt;video:video&gt;</code></li>
+<li>[x] Support Multilingual sites - <strong>done 0.5</strong> <strong>REQUIRES kirby 3.0.0-beta-6.16 or better</strong></li>
+<li>[x] <code>x-default</code> in ML sitemap <strong>done 0.5</strong></li>
+<li>[ ] Headers to stop sitemap.xml being cached?</li>
+<li>[x] Bypass cache and return freshly-generated sitemap, c.f. <em>nocache</em> in Use.</li>
+</ul>
+
+<p>If you want these features, or other ones, implemented, feed me coffee (or EUR or USD).</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>Pick one of the following per your epistemological model:</p>
+
+<ul>
+<li><code>composer require omz13/kirby3-xmlsitemap</code>; the plugin will automagically appear in <code>site/plugins</code>.</li>
+<li>Download a zip of the latest release - <a href="https://github.com/omz13/kirby3-xmlsitemap/archive/master.zip">master.zip</a> - and copy the contents to your <code>site/plugins/kirby3-xmlsitemap</code>.</li>
+<li><code>git submodule add https://github.com/omz13/kirby3-xmlsitemap.git site/plugins/kirby3-xmlsitemap</code>.</li>
+</ul>
+
+<p>For the record: installation by composer is cool; supporting installation by zip and submodule was an absolute pain, especially as I am an installation by composer person, so do feel guilted into getting me Coffee, Beer, etc., because this is for <em>your</em> benefit and <em>not mine</em> (and yes, I would have have preferred to spend my time somewhere warm and sunny instead of being hunched over a keyboard while the snow falls outside and the thermometer shows no inclination to get above 0C).</p>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>The following mechanisms can be used to modify the plugin&#8217;s behavior.</p>
+
+<h4 id="viaconfig.php">via <code>config.php</code></h4>
+
+<p>In your site&#8217;s <code>site/config/config.php</code> the following entries prefixed with <code>omz13.xmlsitemap.</code> can be used:</p>
+
+<ul>
+<li><code>disable</code> : a boolean which, if true, to disable the xmlsitemap functionality (c.f. <code>xmlsitemap</code> in <em>via <code>site.txt</code></em>).</li>
+<li><code>cacheTTL</code> : the number of minutes that the xml-sitemap should be cached before being regenerated; if explicitly set to zero, the cache is disabled. If not specified a default of 10 minutes is assumed.</li>
+<li><code>hideuntranslated</code> : a boolean which, if true, will exclude any untranslated pages (for a multi-language site) from the sitemap (thanks to @mauricerenck for the idea).</li>
+<li><code>debugqueryvalue</code> : a string to be as the value for the query parameter <code>debug</code> to return the xml-sitemap with debugging information (as comment nodes within the xml stream). The global kirby <code>debug</code> configuration must also be true for this to work. The url must be to <code>/sitemap.xml?debug=debugqueryvalue</code> and not <code>/sitemap?debug=_debugqueryvalue_</code> (i.e. the <code>.xls</code> part is important). Be aware that the debugging information will show, if applicable, details of any pages that have been excluded (so if you are using this in production and you don&#8217;t want things to leak, set <code>debugqueryvalue</code> to something random). Furthermore, the site debug flag needs to be set too (i.e. the <code>debug</code> flag in <code>site/config.php</code>).</li>
+<li><code>includeUnlistedWhenSlugIs</code> : an array of slug names whose pages are to be included if their status is unlisted.</li>
+<li><code>includeUnlistedWhenTemplateIs</code> : an array of template names whose pages are to be included if their status is unlisted.</li>
+<li><code>excludePageWhenTemplateIs</code> : an array of templates names whose pages are to be excluded from the xml-sitemap.</li>
+<li><code>excludePageWhenSlugIs</code> : an array of slug names whose pages are to be excluded from the xml-sitemap.</li>
+<li><code>excludeChildrenWhenTemplateIs</code> : an array of templates names whose children are to be ignored (but pages associated with the template is to be included); this is used for one-pagers (where the principal page will be included and all the &#8216;virtual&#8217; children ignored).</li>
+<li><code>disableImages</code> : a boolean which, if true, disables including data for images related to pages included in the xml-sitemap.</li>
+<li><code>addPages</code> : a closure which, if present, returns a collection of <code>Pages</code> to be added. This is how you get virtual pages into the sitemap.</li>
+</ul>
+
+<h5 id="example-configurationforthestarterkit">Example - configuration for the Starter Kit</h5>
+
+<p>For the <a href="https://github.com/getkirby/starterkit">Kirby Starter Kit</a>, the following would be applicable:</p>
+
+<pre><code class="php">&lt;?php
+
+return [
+  'omz13.xmlsitemap.cacheTTL' =&gt; 60,
+  'omz13.xmlsitemap.includeUnlistedWhenSlugIs' =&gt; [ ],
+  'omz13.xmlsitemap.includeUnlistedWhenTemplateIs' =&gt; [ ],
+  'omz13.xmlsitemap.excludePageWhenTemplateIs' =&gt; [ 'contact','sandbox' ],
+  'omz13.xmlsitemap.excludePageWhenSlugIs' =&gt; [ 'form' ],
+  'omz13.xmlsitemap.excludeChildrenWhenTemplateIs' =&gt; [ 'events','one-pager','shop','team','testimonials' ],
+  ],
+];
+</code></pre>
+
+<p><em>For experimental purposes this plugin implements a single-level pseudo-namespace. You can mix discrete vs array options, but try not to, and be aware that priority is given to the array variant. The above discrete configuration would therefore become:</em></p>
+
+<pre><code class="php">&lt;?php
+
+return [
+  'omz13.xmlsitemap' =&gt; [
+    'cacheTTL' =&gt; 60,
+    'includeUnlistedWhenSlugIs' =&gt; [ 'about' ],
+    'includeUnlistedWhenTemplateIs' =&gt; [ ],
+    'excludePageWhenTemplateIs' =&gt; ['contact','sandbox'],
+    'excludePageWhenSlugIs' =&gt; [ 'form' ],
+    'excludeChildrenWhenTemplateIs' =&gt; [ 'events','one-pager','shop','team','testimonials' ],
+    'disableImages' =&gt; false,
+  ],
+];
+</code></pre>
+
+<p>See Kirby3&#8217;s <a href="https://github.com/getkirby/ideas/issues/32">ideas issue #32</a> for more about namespaced options.</p>
+
+<p>And to have a debugged sitemap returned at <code>/sitemap.xml?debug=wombat</code>, it would be:</p>
+
+<pre><code class="php">&lt;?php
+
+return [
+  'debug'  =&gt; true,
+
+  'omz13.xmlsitemap' =&gt; [
+    'omz13.xmlsitemap.debugqueryvalue' =&gt; 'wombat,'
+    'omz13.xmlsitemap.includeUnlistedWhenSlugIs' =&gt; [ ],
+    'omz13.xmlsitemap.excludeChildrenWhenTemplateIs' =&gt; ['events','one-pager','shop','team','testimonials'],
+    'omz13.xmlsitemap.excludePageWhenTemplateIs' =&gt; ['contact','sandbox'],
+    'omz13.xmlsitemap.excludePageWhenSlugIs' =&gt; [ 'form' ],
+  ],
+];
+</code></pre>
+
+<h5 id="example2-sampleclosuresforaddpages">Example 2 - sample closures for <code>addPages</code></h5>
+
+<p>Add pages that are in a named collection:</p>
+
+<pre><code>'omz13.xmlsitemap.addPages' =&gt; function() {
+   return kirby()-&gt;collection('articles');
+   }
+</code></pre>
+
+<p>Add a specific page:</p>
+
+<pre><code>'omz13.xmlsitemap.addPages' =&gt; function() {
+  $c = new Kirby\Cms\Pages;
+  $c-&gt;add( kirby()-&gt;site()-&gt;find('blog/the-sweet-dessert') );
+  return $c;
+  }
+</code></pre>
+
+<h4 id="viacontentsite.txt">via <code>content/site.txt</code></h4>
+
+<p>The plugin can be explicitly disabled in <code>content/site.txt</code> by having an entry for <code>xmlsitemap</code> and setting this to <code>false</code>. This could be achieved through the panel by adding the following into <code>site/blueprints/site.yml</code>:</p>
+
+<pre><code class="yaml">type:          fields
+fields:
+  xmlsitemap:
+    label:     XML sitemap
+    type:      toggle
+    default:   off
+    text:
+      - disabled
+      - enabled
+</code></pre>
+
+<h4 id="viacontentfields">via content fields</h4>
+
+<p>If a page&#8217;s content has a field called <code>excludefromxmlsitemap</code> and this is set to <code>true</code>, then that page (and any children, if present) will be excluded. Similarly to <code>site.txt</code>, this can be easily achieved in a blueprint.</p>
+
+<pre><code class="yaml">type:          fields
+fields:
+  excludefromxmlsitemap:
+    label:     Exclude from sitemap.xml
+    type:      toggle
+    default:   off
+    text:
+      - include implicitly
+      - explicitly exclude
+</code></pre>
+
+<p>As pages are implicitly included within a sitemap, this mechanism should only be used when you have a reason to explicitly exclude a page when it is not possible to do otherwise (e.g. using <code>excludePageWhenTemplateIs</code>).</p>
+
+<h2 id="pagemethods">PageMethods</h2>
+
+<h3 id="headlinkalternates">headLinkAlternates</h3>
+
+<p>If you have a multi-language site, as well as having the sitemap include links to all the different languages, on the site itself each page needs to include <code>&lt;link rel=&quot;alternate&quot; hreflang=&quot;&quot; /&gt;</code> elements in the <code>&lt;head&gt;</code>.</p>
+
+<p>To make this easy, this plugin provides a pageMethod to do this. So, in your <code>&lt;head&gt;</code>, simply add:</p>
+
+<pre><code>&lt;?= $page-&gt;headLinkAlternates(); ?&gt;
+</code></pre>
+
+<h2 id="use">Use</h2>
+
+<p>The plugin makes a sitemap available at <code>/sitemap.xml</code>, and an associated stylesheet &#8216;/sitemap.xls&#8217;.</p>
+
+<p>The sitemap can therefore be retrieved by a simple get to these endpoints:</p>
+
+<pre><code class="sh">curl -H host:whatever.test -k https://whatever.test/sitemap.xml
+</code></pre>
+
+<h3 id="gettingadebuggedresponse">Getting a debugged response</h3>
+
+<p>If the site is in debug mode, the <code>/sitemap.xml</code> will return a verbose debug-filled response if a <code>debug</code> parameter is set and this matches the value in the configuration&#8217;s <code>debugqueryvalue</code>, e.g.:</p>
+
+<pre><code class="sh">curl -H host:whatever.test -k https://whatever.test/sitemap.xml?debug=42
+</code></pre>
+
+<p>In debug mode, the endpoint will take an additional <em>optional</em> parameter, <code>nocache</code>, which if true, will bypass and cached response and explicitly return a freshly generated response, e.g.:</p>
+
+<pre><code class="sh">curl -H host:whatever.test -k https://whatever.test/sitemap.xml?debug=42&amp;nocache=1
+</code></pre>
+
+<h2 id="--dev">&#8211;dev</h2>
+
+<p>To develop on this plugin, <code>composer update --dev</code> will pull in the necessary packages and whatnots.</p>
+
+<p>The <code>composer</code> package include scripts that are useful during development:</p>
+
+<ul>
+<li><code>composer lint</code> to lint the source (using <a href="https://packagist.org/packages/jakub-onderka/php-parallel-lint">parallel-lint</a>)</li>
+<li><code>composer style</code> to check style issues (using <code>phpcs</code> from <a href="https://packagist.org/packages/squizlabs/php_codesniffer">PHP_CodeSniffer</a>) against coding standard <code>omz13-k3p</code> in omz13/coding-standard).</li>
+<li><code>composer fix</code> to fix code style issues (using <code>phpcbf</code> from <a href="https://packagist.org/packages/squizlabs/php_codesniffer">PHP_CodeSniffer</a>)</li>
+<li><code>composer mess</code> to check for potential messes (using <code>phpmd</code> from the <a href="https://packagist.org/packages/phpmd/phpmd">PHP Mess Detector</a>)</li>
+<li><code>composer stan</code> to do static analysis of the source (using <code>phpstan</code> from the <a href="https://packagist.org/packages/phpstan/phpstan">PHP Static Analysis Tool</a>)</li>
+<li><code>composer sanity</code> to run all the above in sequence. If no errors are shown, this is good.</li>
+</ul>
+
+<p>A <code>makefile</code> is provided because:</p>
+
+<ul>
+<li><code>make sanity</code> to check the validity of the composer file and run the sanity script (and its less keys than typing <code>composer sanity</code>, and also because I keep mistyping it as <code>compsoer sanity</code>).</li>
+<li><code>make release</code> to release an updated version using <a href="https://packagist.org/packages/liip/rmt">liip/rmt</a>.</li>
+</ul>
+
+<h2 id="disclaimer">Disclaimer</h2>
+
+<p>This plugin is provided &#8220;as is&#8221; with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please <a href="https://github.com/omz13/kirby3-xmlsitemap/issues/new">create a new issue</a>.</p>
+
+<h2 id="license">License</h2>
+
+<p><a href="https://opensource.org/licenses/MIT">MIT</a></p>
+
+<p>You are prohibited from using this plugin in any project that promotes racism, sexism, homophobia, animal abuse, violence or any other form of hate speech.</p>
+
+</body>
+</html>
+

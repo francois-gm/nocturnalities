@@ -1,0 +1,72 @@
+title: Social post generator
+
+icon: instagram
+
+options:
+   status: false
+   delete: false
+   title: false
+   url: true
+   duplicate: false
+
+columns:
+  - width: 3/4
+    sections:
+      content:
+        type: fields
+        fields:
+          last_updated:
+            label: 
+              en: Last updated on…
+              fr: Mise à jour le…
+            type: text
+            width: 1/2
+            icon: calendar
+            disabled: true
+          updated_by:
+            label: 
+              en: Updated by…
+              fr: Mise à jour par…
+            type: text
+            width: 1/2
+            icon: user
+            help: '{{ page.updated_by.toLabelUpdatedUser }}'
+            disabled: true
+          social_post_type:
+            label: 
+              en: Social post type
+              fr: Type du post social
+            type: select
+            default: social_post_ig_post
+            required: true
+            width: 1/3
+            options:
+              social_post_ig_post: 
+                en: 'Instagram post'
+                fr: 'Instagram post'
+              social_post_ig_story: 
+                en: 'Instagram story'
+                fr: 'Instagram story'
+            help: Use *instagram story* for extra margin on top and bottom sides.
+          social_post_orbit_toggle:
+            label: 
+              en: Hidden orbit body?
+              fr: Corps céleste caché?
+            type: toggle
+            default: false
+            width: 1/3
+            text:
+              - 'No'
+              - 'Yes'
+          social_post_content:
+            label:
+              en: Post text
+              fr: Texte du post
+            type: markdown
+            font: sans-serif
+            buttons:
+              - italic
+              - invisibles
+            size: two-lines
+            required: false
+            width: 1/3

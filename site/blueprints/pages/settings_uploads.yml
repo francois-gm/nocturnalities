@@ -1,0 +1,34 @@
+title: Uploads
+
+icon: file
+
+options:
+  changeSlug: false
+  changeStatus: false
+  changeTemplate: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+  sort: false
+  preview: false
+
+columns:
+  - width: 1/1
+    sections:
+      files_info:
+        type: fields
+        fields:
+          string_menu_info:
+            label: 
+            type: info
+            theme: info
+            text: 
+              en: |
+                Add/manage files for cross domain use and online sharing (files will be accessed under *domain.com/**uploads/filename.extension***)
+      files_fields:
+        headline: 
+          en: Upload files here
+          fr: Ajouter des fichiers ici
+        type: files
+        layout: cards
+        size: tiny

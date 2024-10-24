@@ -1,0 +1,60 @@
+title: Menu
+
+icon: list-bullet
+
+options:
+  changeSlug: false
+  changeStatus: false
+  changeTemplate: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+  sort: false
+  preview: false
+
+columns:
+  - width: 4/4
+    sections:
+      popup_cookies:
+        type: fields
+        fields:
+          cookies_headline:
+            label: 
+              en: Cookies information
+              fr: Avertissement de cookies
+            numbered: false
+            type: headline
+          cookies_button_readmore:
+            label: 
+              en: 'Read more' button label
+              fr: label 'En savoir plus'
+            type: text
+            width: 1/3
+          cookies_readmore_goto:
+            label:
+              en: Linked page
+              fr: Page liée
+            type: pages
+            image: 
+              query: false
+              back: black
+            width: 1/3
+            #min: 1
+            max: 1
+            options: query
+            query: kirby.collection('content-pages')
+          cookies_button_accept:
+            label: 
+              en: 'I agree' button label
+              fr: label 'J'accepte'
+            type: text
+            width: 1/3
+          cookies_text_embed:
+            label: 
+              en: Cookies text on embedded contents
+              fr: Texte de l'avertissement des cookies sur médias embarqués (embed)
+            type: textarea
+            maxlength: 350
+            size: tiny
+            buttons: false
+            width: 1/1

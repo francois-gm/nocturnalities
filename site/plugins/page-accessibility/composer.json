@@ -1,0 +1,19 @@
+{
+    "name": "francois-gm/last-updated",
+    "description": "Last Updated",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François GM",
+            "email": "info@francoisgm.com"
+        }
+    ],
+    "require": {
+        "getkirby/composer-installer": "^1.1"
+    },
+    "extra": {
+        "installer-name": "last-updated"
+    },
+    "minimum-stability": "1.0"
+}

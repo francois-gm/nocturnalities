@@ -1,0 +1,88 @@
+title: Meta tags (SEO)
+
+icon: code
+
+options:
+  changeSlug: false
+  changeStatus: false
+  changeTemplate: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+  sort: false
+  preview: false
+
+columns:
+  - width: 3/4
+    sections:
+      meta_fields:
+        type: fields
+        fields:
+          meta_headline:
+            label:
+              en: Global meta tags (SEO) related fields
+            type: headline
+            numbered: false
+          website_title:
+            label: Website title
+            type: text
+            width: 1/3
+          website_description:
+            label: Website description
+            type: markdown
+            font: sans-serif
+            buttons: false
+            help: 
+              en: Description should be 150-250 characters long for optimal referencing.
+            width: 1/3
+          website_keywords:
+            label: Keywords
+            type: markdown
+            font: sans-serif
+            buttons: false
+            help: Keyworks should each be separated by a comma.
+            width: 1/3
+          matomo_toggle:
+            label: 
+              en: Enable Matomo Analytics?
+              fr: Activer Matomo Analytics?
+              nl: Matomo Analytics inschakelen?
+            type: toggle
+            width: 1/2
+            text:
+              -
+                en: 'No'
+                fr: 'Non'
+                nl: 'Nee'
+              -
+                en: 'Yes'
+                fr: 'Oui'
+                nl: 'Ja'
+            translate: false
+          gap_1:
+            type: gap
+            width: 1/2
+          google_tag_manager_key:
+            label: Google Tag Manager key (disabled)
+            type: text
+            width: 1/2
+            help: 'Format should look like: GTM-XXXX<br> (disabled for GDPR compliance)'
+            disabled: true
+            translate: false
+          google_verification_key:
+            label: Google verification key
+            type: text
+            width: 1/2
+            help: 'Format should look like: 'N8MhZjsTQ2-Pxk8gkra_aqh8oeVYzj_2S7A1U3zTgqo'
+            translate: false
+          socmed_image:
+            label: Social media images (max. 3)
+            type: files 
+            layout: cards
+            max: 3
+            width: 1/1
+  - width: 1/4
+    sticky: true
+    sections:
+      files:
+        extends: sections/page-files

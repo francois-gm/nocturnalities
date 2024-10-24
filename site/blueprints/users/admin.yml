@@ -1,0 +1,25 @@
+title: Admin
+
+columns:
+  - width: 3/4
+    sections:
+      content:
+        type: fields
+        fields:
+          user_first_name:
+            label: First name (full)
+            type: text
+            width: 1/2
+          user_last_name:
+            label: Last name(s) (full)
+            type: text
+            width: 1/2
+          user_first_name_initial:
+            label: First name (initial)
+            type: text
+            width: 1/4
+          user_last_name_initial:
+            label: Last name(s) (initial)
+            type: text
+            width: 1/3
+

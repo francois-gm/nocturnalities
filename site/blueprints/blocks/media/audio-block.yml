@@ -1,0 +1,28 @@
+
+
+# audio block
+
+name: 
+  en: Audio (file)
+  fr: Audio (fichier)
+preview: fields
+wysiwyg: true
+icon: audio
+fields:
+  audio_block_content:
+    label: 
+      en: Select audio file (.mp3)
+      fr: Sélectionner un fichier audio (.mp3)
+    type: files
+    layout: list
+    size: tiny
+    query: page.audio
+    width: 1/2
+    help: "The caption can be filled by clicking on the file (same as an image)."
+    image:
+      cover: false
+      ratio: 3/2
+      back: white
+    multiple: false
+    uploads:
+      template: file-is-audio

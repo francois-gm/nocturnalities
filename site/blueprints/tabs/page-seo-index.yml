@@ -1,0 +1,123 @@
+label: 
+  en: Meta tags (SEO)
+  fr: Éléments meta (SEO)
+  nl: Metatags (SEO)
+icon: search
+columns:
+
+  - width: 1/1
+    sections:
+      seo:
+        type: fields
+        fields:
+
+          head_seo:
+            type: headline
+            label:
+              en: Page-specific meta tags (SEO) fields
+              fr: Champs liés au référencement en ligne spécifiques à la page
+              nl: Paginaspecifieke metatags (SEO) velden
+            numbered: false
+            width: 1/1
+
+          seo_page_info:
+            label: 
+            type: info
+            theme: info
+            width: 1/2
+            text: 
+              en: |
+                <strong>Optional</strong> page-specific fields for search engine optimization. Filling these fields will override the general fields (set under <em>Website settings / Metatags (SEO)</em>) <strong>for this page only</strong>.
+
+                Online ressources to force refresh and re-scrape of the page meta-tags (for previewing and before sharing on social medias): <strong><a href="https://developers.facebook.com/tools/debug/?q={{ page.url }}" target="_blank">Facebook</a></strong> (sharing debugger), <strong><a href="https://cards-dev.twitter.com/validator" target="_blank">Twitter</a></strong> (card validator), <strong><a href="https://www.linkedin.com/post-inspector/" target="_blank">LinkedIn</a></strong> (post inspector)
+                
+              fr: |
+                Champs <strong>optionnels</strong> spécifique à cette page pour référencement web. Remplir ces champs surimposera les champs généraux (sous <em>Réglages du site / Éléments meta (SEO)</em>) <strong> pour cette page seulement</strong>.
+
+                Outils en ligne pour forcer le rafraîchissement des méta-donnés (pour prévisualiser ou avant de partager sur les médias sociaux): <strong><a href="https://developers.facebook.com/tools/debug/?q={{ page.url }}" target="_blank">Facebook</a></strong> (sharing debugger), <strong><a href="https://cards-dev.twitter.com/validator" target="_blank">Twitter</a></strong> (card validator), <strong><a href="https://www.linkedin.com/post-inspector/" target="_blank">LinkedIn</a></strong> (post inspector)
+
+              nl: |
+                <strong>Optioneel</strong> paginaspecifieke velden voor zoekmachineoptimalisatie. Als u deze velden invult, worden de algemene velden (ingesteld onder <em>Website-instellingen / Metatags (SEO)</em>) <strong>alleen voor deze pagina</strong> overschreven.
+
+                Online middelen om het vernieuwen en opnieuw schrapen van de metatags van de pagina te forceren (voor een voorbeeld en voor het delen op sociale media): <strong><a href="https://developers.facebook.com/tools/debug/?q ={{ page.url }}" target="_blank">Facebook</a></strong> (sharing debugger), <strong><a href="https://cards-dev.twitter.com/validator " target="_blank">Twitter</a></strong> (card validator), <strong><a href="https://www.linkedin.com/post-inspector/" target="_blank"> LinkedIn</a></strong> (post inspector)
+
+          seo_page_serp:
+            label: 
+            type: info
+            theme: serp
+            width: 1/2
+            text: 
+              en: |
+                <span class="serp-url">{{ page.url }}</span>
+                <span class="serp-title">{{ page.seo_page_title.or(page.title).not(site.find("meta").or("\home") }} | {{ site.find("meta").website_title.or(site.title) }}</span>
+                <span class="serp-desc">{{ page.seo_page_text.or(page.pageDefaultDesc).or(site.find("meta").website_description) }}</span>
+              fr: |
+                <span class="serp-url">{{ page.url }}</span>
+                <span class="serp-title">{{ page.seo_page_title.or(page.title).not(site.find("meta").or("\home") }} | {{ site.find("meta").website_title.or(site.title) }}</span>
+                <span class="serp-desc">{{ page.seo_page_text.or(page.pageDefaultDesc).or(site.find("meta").website_description) }}</span>
+              nl: |
+                <span class="serp-url">{{ page.url }}</span>
+                <span class="serp-title">{{ page.seo_page_title.or(page.title).not(site.find("meta").or("\home") }} | {{ site.find("meta").website_title.or(site.title) }}</span>
+                <span class="serp-desc">{{ page.seo_page_text.or(page.pageDefaultDesc).or(site.find("meta").website_description) }}</span>
+          seo_page_title:
+            label: 
+              en: SEO page title
+              fr: Titre de la page référencée
+              nl: SEO-Titel van pagina
+            type: text
+            maxlength: 55
+            help:
+              en: Max. 55 characters.
+              fr: 55 caractères maximum.
+              nl: Maximaal 55 tekens.
+            width: 1/3
+
+          seo_page_text:
+            label: 
+              en: SEO page description
+              fr: Description de la page référencée
+              nl: SEO-paginabeschrijving
+            type: markdown
+            font: sans-serif
+            buttons: false
+            maxlength: 300
+            help: 
+              en: Description should be max. 300 characters long (for optimal referencing).
+              fr: La description devrait ne pas faire plus de 300 caractères (pour référencement optimal).
+              nl: Beschrijving mag max. 300 tekens lang (voor optimale verwijzing).
+            width: 1/3
+
+          seo_page_keywords:
+            label: 
+              en: SEO page keywords
+              fr: Mots-clés de la page référencée
+              nl: Zoekwoorden voor SEO-pagina's
+            type: markdown
+            font: sans-serif
+            buttons: false
+            help: 
+              en: Keywords should each be separated by a comma.
+              fr: Les mots-clés doivent être séparés par une virgule.
+              nl: Trefwoorden moeten elk worden gescheiden door een komma.
+            width: 1/3
+  - width: 3/4
+    sections:
+      seo_image:
+        type: fields
+        fields:
+          seo_page_socmed_image:
+            label: 
+              en: Page images for sharing on social medias (max. 3)
+              fr: Images pour partage sur médias sociaux (max. 3)
+              nl: Pagina-afbeeldingen om te delen op sociale media (max. 3)
+            type: files
+            query: page.images
+            layout: cards
+            max: 3
+            width: 1/1
+  - width: 1/4
+    sections:  
+      files:
+        extends: sections/page-files
+
+          

@@ -1,0 +1,105 @@
+
+options:
+   status: false
+   delete: false
+   template: false
+   pages: false
+   changeTitle: false
+   changeStatus: false
+
+columns:
+  - width: 3/4
+    sections:
+      # contentpages:
+      #   type: pages
+      #   headline: 
+      #     en: Content pages
+      #     fr: Pages de contenus
+      #   layout: list
+      #   image: 
+      #     query: false 
+      #     back: black
+      #   max: 1
+      #   sortable: false
+      #   limitOptions:
+      #     - 10
+      #     - 25
+      #     - 50
+      #     - 100
+      #   template:
+      #     - contribution-index
+      homepage:
+        type: pages
+        max: 1
+        headline: 
+          en: Home page
+          fr: Page d'accueil
+        layout: list
+        image: 
+          query: false 
+          back: black
+        sortable: false
+        template:
+          - home
+  - width: 1/4
+    sections:
+      optionpages:
+        type: pages
+        headline: Website settings
+        image: 
+          query: false 
+          back: black
+        sortable: false
+        template:
+          - settings_meta
+          - settings_menu
+          - settings_strings
+        max: 3
+      filepages:
+        type: pages
+        headline: 
+          en: Files / relationships
+          fr: Fichiers / relations
+          nl: Bestanden / relaties
+        image: 
+          query: false 
+          back: black
+        max: 3
+        sortable: false
+        template:
+          - settings_uploads
+          - settings_category-index
+          - settings_social-post-generator
+      analyticspages:
+        type: pages
+        headline:
+          en: Website reports
+          fr: Rapports du site
+          nl: Siterapporten
+        template:
+          - settings_analytics
+        sortable: false
+        max: 1
+        image: 
+          query: false
+          back: black
+      janitorpages:
+        type: fields
+        fields:
+          janitor:
+            headline: false
+            type: janitor
+            label:
+              en: Clean Cache
+              fr: Nettoyer le cache
+              nl: Cache opschonen
+            progress: Cleaning Cache...
+            job: flushPages
+          # thumbclean:
+          #  headline: false
+          #  type: janitor
+          #  label:
+          #    en: Generate thumbs
+          #    fr: Générer les vignettes
+          #  progress: Generating thumbs...
+          #  job: thumbs

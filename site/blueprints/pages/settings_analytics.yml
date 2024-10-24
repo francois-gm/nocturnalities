@@ -1,0 +1,26 @@
+title: 
+  en: Analytics
+  fr: Outils analytiques
+  nl: Analytische tools
+
+icon: globe
+
+options:
+  changeSlug: false
+  changeStatus: false
+  changeTemplate: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+  sort: false
+  preview: false
+
+columns:
+  - width: 3/4
+    sections:
+      main:
+        type: matomo-main
+  - width: 1/4
+    sections:
+      sidebar:
+        type: matomo-sidebar

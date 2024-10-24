@@ -1,0 +1,79 @@
+{
+  "report-only": false,
+  "base-uri": {
+    "self": true
+  },
+  "default-src": {
+    "self": true
+  },
+  "connect-src": {
+    "allow": [
+      "https://analytics.nocturnalities.com",
+      "https://geolocation-db.com/"
+    ],
+    "self": true
+  },
+  "font-src": {
+    "self": true
+  },
+  "form-action": {
+    "allow": [
+      "https://*"
+    ],
+    "self": true
+  },
+  "frame-ancestors": {
+    "allow": [
+      "https://*"
+    ],
+    "self": true
+  },
+  "frame-src": {
+    "allow": [
+        "https://*"
+    ],
+    "self": true
+  },
+  "img-src": {
+    "allow": [
+      "https://*"
+    ],
+    "self": true,
+    "data": true
+  },
+  "media-src": {
+    "self": true,
+    "data": true
+  },
+  "object-src": {
+    "self": true
+  },
+  "plugin-types": [],
+  "script-src": {
+    "allow": [
+        "https://analytics.nocturnalities.com",
+        "https://geolocation-db.com/"
+    ],
+    "hashes": [],
+    "self": true,
+    "unsafe-inline": true,
+    "unsafe-eval": false
+  },
+  "script-src-elem": {
+    "allow": [
+        "https://analytics.nocturnalities.com",
+        "https://geolocation-db.com/"
+    ],
+    "self": true,
+    "unsafe-inline": true
+  },
+  "style-src": {
+    "self": true,
+    "unsafe-inline": true
+  },
+  "upgrade-insecure-requests": true,
+  "worker-src": {
+    "allow": [],
+    "self": false
+  }
+}

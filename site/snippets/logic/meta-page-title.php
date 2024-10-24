@@ -1,0 +1,1 @@
+<?php if (!$page->isHomePage() ): ?><?= Str::unhtml($page->seo_page_title()->or($page->title())->smartypants()) ?> | <?= Str::unhtml($meta_global->website_title()->or($site->title())->smartypants()) ?><?php else: ?><?= Str::unhtml($meta_global->website_title()->or($site->title())->smartypants()) ?><?php endif; ?>

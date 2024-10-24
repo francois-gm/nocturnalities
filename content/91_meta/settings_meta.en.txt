@@ -1,0 +1,41 @@
+Title: SEO - Meta elements
+
+----
+
+Website-title: Nocturnalities, Bargaining Beyond Rest
+
+----
+
+Website-description: Nocturnalities is an art project & platform that tackles the politics of rest and sleep extractivism by examining different forms of cultural labour and institutional strategies — highlighting their communal impact and temporal boundaries.
+
+----
+
+Website-keywords: nocturnalities, rest, rest-archive, 24/7, labour, non-stop, late-capitalism, sleep-politics, cognitive-capitalism, work, time, production, extractive, resistance, exhaustion, biopolitics, precarity, cultural-workers, art-labour, institutions, sabbatical, freelance, sleep-ecologies, neurodiversity, queer-life, performance, expectations, anxiety, social-action, metal-health, well-being, future-market, negotiations.
+
+----
+
+Matomo-toggle: false
+
+----
+
+Google-tag-manager-key: 
+
+----
+
+Google-verification-key: 
+
+----
+
+Socmed-image: 
+
+----
+
+Related-boost: 
+
+----
+
+Related: 
+
+----
+
+Uuid: cKp9fRTZWwNeqXiF

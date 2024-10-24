@@ -1,0 +1,41 @@
+title: 
+  en: Category types
+  fr: Types de catégories
+  nl: Categorie -typen
+
+icon: tag
+
+num: zero
+
+options:
+  changeSlug: false
+  changeStatus: false
+  changeTemplate: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+  sort: false
+  preview: false
+
+columns:
+  - width: 3/4
+    sections:
+      categoriesposts:
+        headline: 
+          en: Category posts
+          fr: Posts de catégories
+          nl: Categorien posts
+        type: pages
+        image: 
+          query: false 
+          back: black
+        limit: 10
+        sortable: false
+        sortBy: title asc
+        limitOptions:
+          - 10
+          - 25
+          - 50
+          - 100
+        template:
+          - settings_category-post

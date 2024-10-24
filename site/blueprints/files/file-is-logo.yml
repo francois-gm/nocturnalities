@@ -1,0 +1,43 @@
+title:
+  en: File (logo)
+  fr: Fichier (logo)
+
+accept:
+  mime: image/jpeg, image/png, image/gif, image/svg+xml
+  type: image
+
+fields:
+  alt:
+    label: 
+      en: Alternate descriptive text (for accessibility)
+      fr: Texte descriptif alternatif (pour accessibilité)
+    type: markdown
+    font: sans-serif
+    buttons:
+      - invisibles
+    size: tiny
+    width: 1/2
+    whenQuery: _type = 'image' || _type = 'audio' || _type = 'video'
+  logo_clickable:
+    label:
+      en: Make logo clickable?
+      fr: Logo cliquable?
+    default: false
+    type: toggle
+    width: 1/6
+    text:
+        -
+          en: 'No'
+          fr: 'Non'
+        -
+          en: 'Yes'
+          fr: 'Oui'
+  logo_url:
+    label:
+      en: Logo URL
+      fr: URL du logo
+    type: url
+    width: 2/6
+    required: true
+    when:
+      logo_clickable: true

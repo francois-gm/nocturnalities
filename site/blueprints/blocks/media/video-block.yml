@@ -1,0 +1,66 @@
+
+
+# video block
+
+name: 
+  en: Video (file)
+  fr: Vidéo (fichier)
+preview: fields
+wysiwyg: true
+icon: video
+fields:
+  video_block_content:
+    label: 
+      en: Select file (.mp4)
+      fr: Sélectionner le fichier (.mp4)
+    type: files
+    layout: cards
+    size: small
+    query: page.videos
+    width: 2/4
+    help: 
+      en: "The element's caption can be filled by clicking on the file (same as an image)."
+      fr: "La légende de l'élément peut être remplie en cliquant sur le fichier (comme pour une image)."
+    image:
+      cover: false
+      ratio: 3/2
+      back: white
+    multiple: false
+    uploads:
+      template: file-is-video
+  video_block_thumb:
+    label: 
+      en: Select thumb.
+      fr: Sélect. vignette
+    type: files
+    layout: cards
+    size: tiny
+    query: page.images
+    width: 1/4
+    help: 
+      en: "Image thumbnail is used as cover for video files."
+      fr: "L'image vignette est utilisée en tant qu'image de départ pour la vidéo."
+    image:
+      cover: false
+      ratio: 3/2
+      back: white
+    multiple: false
+    uploads:
+      template: file-is-image
+  autoplay_toggle:
+    label: 
+      en: Autoplay on loop?
+      fr: Autoplay en boucle?
+    type: toggle
+    default: false
+    width: 1/4
+    help:
+      en: (for muted looped autoplay videos without controls)
+      fr: (pour vidéos muets en boucle autoplay sans contrôles)
+    text:
+      - 
+        en: 'No'
+        fr: 'Non'
+      - 
+        en: 'Yes'
+        fr: 'Oui'

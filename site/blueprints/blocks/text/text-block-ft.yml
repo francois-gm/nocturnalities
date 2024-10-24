@@ -1,0 +1,38 @@
+
+
+# text block (with footnotes)
+
+name: 
+  en: Text
+  fr: Texte courant
+preview: fields
+wysiwyg: true
+icon: text
+fields:
+  text_block_content:
+    label: 
+      en: Text
+      fr: Texte
+    type: markdown
+    font: sans-serif
+    buttons:
+      headlines:
+        - h2
+        - h3
+        - h4
+      - italic
+      link:
+        blank: false
+      - pagelink
+      - file
+      - blockquote
+      - ol
+      - ul
+      - footnote
+      - hr
+      - invisibles
+    files:
+      query: page.files.filterBy("type", "in", ["document", "audio"])
+    uploads: false
+    query:
+      pagelink: kirby.collection('content-pages')

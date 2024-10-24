@@ -1,0 +1,63 @@
+title: Editor
+permissions:
+  access:
+    panel: true
+    site: true
+    settings: true
+  files:
+    create: true
+    changeName: true
+    delete: true
+    replace: true
+    update: true
+  site:
+    update: true
+  pages:
+    create: true
+    changeTemplate: true
+    changeTitle: true
+    changeSlug: true
+    delete: true
+    hide: true
+    sort: true
+    update: true
+  user:
+    create: true
+    changeName: true
+    changeEmail: true
+    changePassword: true
+    changeRole: false
+    delete: false
+    update: true
+  users:
+    create: true
+    changeEmail: false
+    changeLanguage: true
+    changeName: false
+    changePassword: false
+    changeRole: false
+    delete: false
+    update: false
+
+columns:
+  - width: 3/4
+    sections:
+      content:
+        type: fields
+        fields:
+          user_first_name:
+            label: First name (full)
+            type: text
+            width: 1/2
+          user_last_name:
+            label: Last name(s) (full)
+            type: text
+            width: 1/2
+          user_first_name_initial:
+            label: First name (initial)
+            type: text
+            width: 1/4
+          user_last_name_initial:
+            label: Last name(s) (initial)
+            type: text
+            width: 1/3

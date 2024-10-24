@@ -1,0 +1,27 @@
+title: Category
+
+icon: tag
+
+num: zero
+
+options:
+  changeSlug: true
+  changeStatus: true
+  changeTemplate: false
+  changeTitle: true
+  delete: true
+  duplicate: true
+  sort: false
+  preview: false
+   
+columns:
+  - width: 1/1
+    sections:
+      content:
+        type: fields
+        fields:
+          headline:
+            label: ''
+            type: headline
+            numbered: false
+      

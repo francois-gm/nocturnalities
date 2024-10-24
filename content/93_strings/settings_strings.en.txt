@@ -1,0 +1,37 @@
+Title: Text strings
+
+----
+
+String-header-sunrise: Sunrise
+
+----
+
+String-header-daylight: Daylight
+
+----
+
+String-header-sunset: Sunset
+
+----
+
+String-header-latitude: Lat
+
+----
+
+String-header-longitude: Lng
+
+----
+
+Strings-aria-previous: Previous
+
+----
+
+Strings-aria-next: Next
+
+----
+
+Strings-aria-close: Close
+
+----
+
+Uuid: TG3WDMzqfR9A4ieF

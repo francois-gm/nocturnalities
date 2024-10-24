@@ -1,0 +1,25 @@
+type: fields
+fields:
+  content_builder:
+    label: 
+      en: Content blocks
+      fr: Blocs de contenu
+    type: blocks
+    width: 1/1
+    fieldsets:
+      content:
+        label: Text
+        type: group
+        fieldsets:
+          text_block: blocks/text/text-block
+          caption_block: blocks/text/caption-block
+          image_block: blocks/media/image-block
+          embed_block: blocks/media/embed-block
+          audio_block: blocks/media/audio-block
+          video_block: blocks/media/video-block
+      special:
+        label: Special
+        type: group
+        fieldsets:
+          button_block: blocks/special/button-block
+          documents_block: blocks/special/documents-block

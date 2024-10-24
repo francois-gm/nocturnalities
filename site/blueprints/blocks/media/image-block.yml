@@ -1,0 +1,28 @@
+
+
+# image block
+
+name: 
+  en: Image
+  fr: Image
+preview: fields
+wysiwyg: true
+icon: image
+fields:
+  image_block_content:
+    label:
+      en: Select image
+      fr: Sélectionner l'image
+    type: files
+    layout: cards
+    size: medium
+    query: page.images
+    width: 1/2
+    #help: "The image needs to be uploaded through the 'upload file(s)' element before it can be added here."
+    image:
+      cover: false
+      ratio: 3/2
+      back: white
+    multiple: false
+    uploads:
+      template: file-is-image

@@ -1,0 +1,15 @@
+title: Page
+preset: page
+
+options:
+  status: true
+  delete: true
+
+pages: false
+
+fields:
+  text:
+    label: Text
+    type: markdown
+    buttons: false
+    size: medium

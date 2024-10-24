@@ -1,0 +1,10 @@
+type: multiselect
+options: query
+max: 1
+query:
+  fetch: kirby.collection('boostidkvs')
+  text: "{{ arrayItem.text }}"
+  value: "{{ arrayItem.value }}"
+search:
+  min: 3
+  display: 10

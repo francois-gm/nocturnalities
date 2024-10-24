@@ -1,0 +1,19 @@
+{
+    "name": "francois-gm/page-methods",
+    "description": "Page methods",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François GM",
+            "email": "info@francoisgm.com"
+        }
+    ],
+    "require": {
+        "getkirby/composer-installer": "^1.1"
+    },
+    "extra": {
+        "installer-name": "page-methods"
+    },
+    "minimum-stability": "1.0"
+}

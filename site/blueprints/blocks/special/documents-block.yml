@@ -1,0 +1,117 @@
+
+
+# documents block
+
+name: 
+  en: Documents / external links list
+  fr: Liste de documents / liens externes
+preview: fields
+wysiwyg: true
+icon: file
+fields:
+  documents_block_title:
+    label:
+      en: List title
+      fr: Titre de la liste
+    type: markdown
+    font: sans-serif
+    buttons:
+      - italic
+      - invisibles
+    size: one-line
+    width: 1/1
+    help:
+      en: 'Optional, no title if left empty.'
+      fr: 'Optionnel, pas de titre si laissé vide.'
+  documents_block_content:
+    label:
+      en: Documents / external links list
+      fr: Liste de documents / liens externes
+    type: structure
+    width: 1/1
+    columns:
+      item_title:
+        width: 3/4
+        value: item_title.kti
+      item_type:
+        width: 1/4
+    fields:
+      item_title:
+        label:
+          en: Title
+          fr: Titre
+        type: markdown
+        font: sans-serif
+        buttons:
+          - italic
+          - invisibles
+        size: one-line
+        required: true
+        width: 3/4
+      item_type:
+        label: 
+          en: Item type
+          fr: Type de l'élément
+        type: select
+        default: item_isfile
+        required: true
+        width: 1/4
+        options:
+          item_isfile: 
+            en: 'File'
+            fr: 'Fichier'
+          item_islink: 
+            en: 'Link'
+            fr: 'Lien'
+      item_isfile_content:
+        label: 
+          en: 'File'
+          fr: 'Fichier'
+        type: files
+        layout: list
+        query: page.files
+        multiple: false
+        required: true
+        width: 2/4
+        image:
+          cover: false
+          ratio: 3/2
+          back: black
+        when:
+          item_type: item_isfile
+      item_islink_url:
+        label:
+          en: URL
+          fr: URL
+        type: url
+        required: true
+        width: 2/4
+        when:
+          item_type: item_islink
+      item_haslabel_toggle:
+        label: 
+          en: Has type label?
+          fr: Label de type?
+        type: toggle
+        default: true
+        width: 1/4
+        help:
+          en: (adds file/link info)
+          fr: (ajoute info du fichier/lien)
+        text:
+          - 
+            en: 'No'
+            fr: 'Non'
+          - 
+            en: 'Yes'
+            fr: 'Oui'
+      item_islink_target_type:
+        label:
+          en: Label text
+          fr: Texte du label
+        type: text
+        required: false
+        width: 1/4
+        when:
+          item_type: item_islink
+          item_haslabel_toggle: true

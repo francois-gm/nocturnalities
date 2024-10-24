@@ -1,0 +1,112 @@
+
+
+# button block
+
+name: 
+  en: Button block
+  fr: Bloc bouton
+preview: fields
+wysiwyg: true
+icon: circle-filled
+fields:
+  button_block_string:
+    label: 
+      en: Button text string
+      fr: Texte du bouton
+    type: text
+    width: 2/3
+  button_block_popup:
+    label: 
+      en: Open in new window?
+      fr: Ouvrir dans nouvelle fenêtre?
+    default: true
+    type: toggle
+    width: 1/3
+    text:
+        -
+          en: 'No'
+          fr: 'Non'
+        -
+          en: 'Yes'
+          fr: 'Oui'
+  button_linktype:
+    label:
+      en: Type
+      fr: Type
+    type: select
+    default: linkurl
+    options:
+      linkurl: 
+        en: URL
+        fr: URL
+      linkemail:
+        en: Email
+        fr: Email
+      linkpage:
+        en: Internal page
+        fr: Page interne
+      linkfilepage: 
+        en: File (local page)
+        fr: Fichier (page locale)
+      linkfilesite: 
+        en: File (global)
+        fr: Fichier (global)
+    width: 1/4
+  button_linkurl_target:
+    label: 
+      en: Target URL
+      fr: URL de destination
+    type: url
+    width: 3/4
+    when:
+      button_linktype: linkurl
+  button_linkemail_target:
+    label: 
+      en: Target email
+      fr: Email de destination
+    type: email
+    width: 3/4
+    when:
+      button_linktype: linkemail
+  button_linkpage_target:
+    label:
+      en: Target page
+      fr: Page de destination
+    type: pages
+    image: 
+      query: false
+      back: black
+    max: 1
+    options: query
+    subpages: false
+    query: kirby.collection('content-pages')
+    width: 3/4
+    limit: 10
+    when:
+      button_linktype: linkpage
+  button_linkfilepage_target:
+    label:
+      en: Target file (local page)
+      fr: Fichier de destination (page locale)
+    type: files
+    max: 1
+    options: query
+    query: page.files
+    width: 3/4
+    limit: 10
+    when:
+      button_linktype: linkfilepage
+  button_linkfilesite_target:
+    label:
+      en: Target file (global)
+      fr: Fichier de destination (global)
+    type: files
+    max: 1
+    options: query
+    uploads: 
+      parent: site.find('files')
+    query: site.find('files')
+    width: 3/4
+    limit: 10
+    when:
+      button_linktype: linkfilesite

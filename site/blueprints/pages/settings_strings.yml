@@ -1,0 +1,85 @@
+title: Text strings
+
+icon: title
+
+options:
+  changeSlug: false
+  changeStatus: false
+  changeTemplate: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+  sort: false
+  preview: false
+
+columns:
+  - width: 1/1
+    sections:
+      strings_fields:
+        type: fields
+        fields:
+          strings_headline:
+            label: Global website text strings
+            type: headline
+            numbered: false
+          string_header_sunrise:
+            label: false
+            counter: false
+            type: text
+            placeholder: 'Sunrise'
+            width: 1/4
+          string_header_daylight:
+            label: false
+            counter: false
+            type: text
+            placeholder: 'Daylight'
+            width: 1/4
+          string_header_sunset:
+            label: false
+            counter: false
+            type: text
+            placeholder: 'Sunset'
+            width: 1/4
+          string_header_latitude:
+            label: false
+            counter: false
+            type: text
+            placeholder: 'Lat'
+            width: 1/4
+          string_header_longitude:
+            label: false
+            counter: false
+            type: text
+            placeholder: 'Lng'
+            width: 1/4
+          strings_aria_headline:
+            label: 
+              en: ARIA (accessibility) related text strings
+              fr: Chaînes de textes liées aux balises ARIA (accessibilité)
+            type: headline
+            numbered: false
+          strings_aria_previous:
+            label: false
+            counter: false
+            type: text
+            placeholder: 
+              en: 'previous'
+              fr: 'précédent'
+            width: 1/4
+          strings_aria_next:
+            label: false
+            counter: false
+            type: text
+            placeholder: 
+              en: 'next'
+              fr: 'suivant'
+            width: 1/4
+          strings_aria_close:
+            label: false
+            counter: false
+            type: text
+            placeholder: 
+              en: 'close'
+              fr: 'fermer'
+            width: 1/4
+          

@@ -1,0 +1,36 @@
+
+
+# caption block
+
+name: 
+  en: Footnote/caption
+  fr: Notes en bas de page / légendes
+preview: fields
+wysiwyg: true
+icon: text
+fields:
+  caption_block_content:
+    label: 
+      en: Footnote/caption text
+      fr: Texte de notes en bas de page / légendes
+    type: markdown
+    font: sans-serif
+    size: small
+    buttons:
+      - italic
+      link:
+        blank: false
+      - pagelink
+      - file
+      - blockquote
+      - ol
+      - ul
+      - hr
+      - invisibles
+    files:
+      query: page.files.filterBy("type", "in", ["document", "audio"])
+    uploads: false
+    query:
+      pagelink: kirby.collection('content-pages')
+
+

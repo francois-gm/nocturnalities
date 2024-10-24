@@ -1,0 +1,97 @@
+
+
+# embed block
+
+name: 
+  en: Embedded content
+  fr: Contenus 'embarqués' (embed)
+preview: fields
+wysiwyg: true
+icon: file-code
+fields:
+  embed_block_type:
+    label: 
+      en: Embed media type
+      fr: Type de média embed
+    type: radio
+    columns: 4
+    width: 1/1
+    default: video_embed_youtube
+    options:
+      video_embed_youtube: 
+        en: 'Video (YouTube)'
+        fr: 'Vidéo (YouTube)' 
+      video_embed_vimeo: 
+        en: 'Video (Vimeo)'
+        fr: 'Vidéo (Vimeo)'
+      audio_embed_soundcloud: 
+        en: 'Audio (Soundcloud)'
+        fr: 'Audio (Soundcloud)'
+      custom_embed: 
+        en: 'Other'
+        fr: 'Autre'
+  video_embed_youtube_block_content:
+    label: 
+      en: URL address of the Youtube video
+      fr: Adresse URL de la vidéo Youtube
+    type: embed
+    width: 1/1
+    help: 
+      en: "Example: 'https://www.youtube.com/watch?v=FlS0cAppTHg'"
+      fr: "Exemple: 'https://www.youtube.com/watch?v=FlS0cAppTHg'"
+    provider: youtube
+    when:
+      embed_block_type: video_embed_youtube
+  video_embed_vimeo_block_content:
+    label: 
+      en: URL address of the Vimeo video
+      fr: Adresse URL de la vidéo Vimeo
+    type: embed
+    width: 1/1
+    help: 
+      en: "Example: 'https://vimeo.com/313414596'"
+      fr: "Exemple: 'https://vimeo.com/313414596'" 
+    provider: vimeo
+    when:
+      embed_block_type: video_embed_vimeo
+  audio_embed_soundcloud_block_content:
+    label: 
+      en: URL address of the Soundcloud track
+      fr: Adresse URL de la pièce Soundcloud
+    type: embed
+    width: 1/1
+    help: 
+      en: "Example: 'https://soundcloud.com/stefanafratila/interlude-ii'"
+      fr: "Exemple: 'https://soundcloud.com/stefanafratila/interlude-ii'"
+    provider: soundcloud
+    when:
+      embed_block_type: audio_embed_soundcloud
+  custom_embed_block_content:
+    label: 
+      en: Embedded content
+      fr: Contenu 'embed'
+    type: textarea
+    buttons: false
+    width: 1/1
+    help:
+      en:  |
+        Add embedded code as provided by the platform. Example: '&lt;iframe style=&quot;border: 0; width: 100%; height: 120px;&quot; src=&quot;<span style="word-break: break-all;">https://bandcamp.com/EmbeddedPlayer/album=4173461786/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/</span>&quot; seamless&gt;&lt;/iframe&gt;'
+      fr:  |
+        Ajouter le code 'embed' tel que fourni par la plate-forme. Exemple: '&lt;iframe style=&quot;border: 0; width: 100%; height: 120px;&quot; src=&quot;<span style="word-break: break-all;">https://bandcamp.com/EmbeddedPlayer/album=4173461786/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/</span>&quot; seamless&gt;&lt;/iframe&gt;'
+    when:
+      embed_block_type: custom_embed
+  caption:
+    label: 
+      en: Caption (optional)
+      fr: Légende (optionnel)
+    type: markdown
+    font: sans-serif
+    buttons:
+      - italic
+      link:
+        blank: false
+      - email
+      - invisibles
+    blank: true
+    size: one-line
+    width: 1/1

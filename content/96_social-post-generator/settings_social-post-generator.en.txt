@@ -1,0 +1,30 @@
+Title: Social post generator
+
+----
+
+Last-updated: 2023-10-25 14:45
+
+----
+
+Updated-by: user://rWySI0HW
+
+----
+
+Social-post-type: social_post_ig_post
+
+----
+
+Social-post-orbit-toggle: false
+
+----
+
+Social-post-content:
+
+What do 
+institutions 
+at rest look 
+like?
+
+----
+
+Uuid: NqBHZ2yR8F6LoRGB

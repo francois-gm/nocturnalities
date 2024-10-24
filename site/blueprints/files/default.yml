@@ -1,0 +1,34 @@
+title: 
+  en: File
+  fr: Fichier
+
+accept: 
+  mime: image/jpeg, image/png, image/gif, image/svg+xml, audio/mpeg, audio/mp3, video/mpeg, video/mp4, application/pdf, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/msword, application/x-rar-compressed, application/rtf, application/x-tar, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/xml, application/zip, application/*, font/*, text/plain, text/*
+  type: image, document, archive, audio, video
+
+fields:
+  caption:
+    label: 
+      en: Caption
+      fr: Légende
+    type: markdown
+    font: sans-serif
+    buttons:
+      - italic
+      - link
+      - email
+      - invisibles
+    size: small
+    width: 1/2
+    whenQuery: _type = 'image' || _type = 'audio' || _type = 'video'
+  alt:
+    label: 
+      en: Alternate descriptive text (for accessibility)
+      fr: Texte descriptif alternatif (pour accessibilité)
+    type: markdown
+    font: sans-serif
+    buttons:
+      - invisibles
+    size: tiny
+    width: 1/2
+    whenQuery: _type = 'image' || _type = 'audio' || _type = 'video'

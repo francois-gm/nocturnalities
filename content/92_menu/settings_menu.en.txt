@@ -1,0 +1,25 @@
+Title: Menu, cookies and theme
+
+----
+
+Cookies-button-readmore: Learn more
+
+----
+
+Cookies-readmore-goto: 
+
+----
+
+Cookies-button-accept: I agree
+
+----
+
+Cookies-text-embed: To see this embedded content, you must accept the use of content-related third party cookies.
+
+----
+
+Uuid: 0f5f31wzowhlYQpR
+
+----
+
+Cookies-toggle: 0

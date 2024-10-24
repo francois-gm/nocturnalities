@@ -1,0 +1,19 @@
+{
+    "name": "texnixe/pagemethods",
+    "description": "Page methods (utility, general)",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Texnixe",
+            "email": "-"
+        }
+    ],
+    "require": {
+        "getkirby/composer-installer": "^1.1"
+    },
+    "extra": {
+        "installer-name": "page-methods-utils"
+    },
+    "minimum-stability": "1.0"
+}
