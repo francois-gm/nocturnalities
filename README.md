@@ -1,6 +1,6 @@
 # Nocturnalities
  
-Landing page for the Nocturnalities project
+Landing page for the Nocturnalities project.
 
 Uses:
 
